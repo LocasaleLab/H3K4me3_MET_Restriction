@@ -201,7 +201,7 @@ int main(int argc, char *argv[])
 				if(isOverlap(Peak,pos)==true)
 				{
 					foundTag=true;
-					int len=min(pos.p2,Peak.p2)-max(pos.p1,Peak.p1)+1;
+					int len=min(pos.p2,Peak.p2)-max(pos.p1,Peak.p1);
 					for(int j=0;j<len;j++)
 						fout<<h<<"\t";
 				}
