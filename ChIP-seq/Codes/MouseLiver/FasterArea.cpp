@@ -132,7 +132,7 @@ RegionList readRegionInfo(void)
 			ss1 >> vbegin;
 			ss2 >> vend;
 			reg.p1=vbegin;
-			reg.p2=vend;
+			reg.p2=vend + 1;
 			types.push_back(vtype);
 			regions.push_back(reg);
 		}
@@ -240,7 +240,7 @@ int main(int argc, char *argv[])
 			{
 				int sptype=SubRL.types[i];
 				Region subpeak=SubRL.regions[i];
-				int width=min(subpeak.p2,Peak.p2)-max(subpeak.p1,Peak.p1)+1;
+				int width=min(subpeak.p2,Peak.p2)-max(subpeak.p1,Peak.p1);
 				LenType[sptype]=LenType[sptype]+width;
 				CntType[sptype]=CntType[sptype]+1;
 				for(int j=search_start;j<search_end;j++)
@@ -252,7 +252,7 @@ int main(int argc, char *argv[])
 						int pend=min(pos.p2,subpeak.p2);
 						int pbegin=max(pos.p1,subpeak.p1);
 						double pile=PL.pileups[j];
-						AreaType[sptype]=AreaType[sptype]+(pend-pbegin+1)*pile;
+						AreaType[sptype]=AreaType[sptype]+(pend-pbegin)*pile;
 						foundTag=true;
 					}
 					else if(foundTag==true)
